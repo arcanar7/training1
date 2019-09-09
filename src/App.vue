@@ -55,6 +55,9 @@ export default {
 </script>
 
 <style>
+.v-application {
+    background: #ffffff !important;
+}
 .v-application--wrap {
     min-height: 0px !important;
 }
