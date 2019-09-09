@@ -7,7 +7,7 @@
                 :value="progressBar"
                 background-color="white"
                 color="blue"
-                class="progress"
+                class="v-progress-training"
                 height="10"
             ></v-progress-linear>
             <v-card-text>
@@ -55,10 +55,13 @@ export default {
 </script>
 
 <style>
+.v-application--wrap {
+    min-height: 0px !important;
+}
 h3,
 .success,
 .info {
-    margin: 30px 0;
+    margin: 30px 0 !important;
 }
 .flip-enter-active {
     animation: flipInX 0.3s linear;
@@ -66,7 +69,7 @@ h3,
 .flip-leave-active {
     animation: flipOutX 0.3s linear;
 }
-.progress {
+.v-progress-training {
     transition: width 0.5s;
 }
 
