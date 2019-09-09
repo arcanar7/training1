@@ -9,12 +9,10 @@
 export default {
     methods: {
         continueBtn() {
-            if (this.questDone < this.$store.getters.getQuestMax) {
-                this.changeState('question')
-            } else {
-                this.changeState('result')
-            }
-        }
+            this.questDone < this.$store.getters.getQuestMax
+                ? this.changeState('question')
+                : this.changeState('result')
+        },
     },
     computed: {
         message() {

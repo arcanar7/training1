@@ -20,11 +20,7 @@ export default {
             return this.$store.getters.getLevels
         },
         discharge() {
-            if (this.levels[this.level + 1]) {
-                return true
-            } else {
-                return false
-            }
+            return this.levels[this.level + 1]
         },
     },
     methods: {
@@ -34,13 +30,11 @@ export default {
         },
         nextLevel() {
             this.$store.dispatch('setLevel')
-            this.$store.dispatch('setStatsClear')
-            this.changeState('question')
+            this.repeat()
         },
         onDischarge() {
             this.$store.dispatch('setLevelStart')
-            this.$store.dispatch('setStatsClear')
-            this.changeState('question')
+            this.repeat()
         },
     },
 }

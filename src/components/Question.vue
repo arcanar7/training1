@@ -18,17 +18,15 @@
 export default {
     methods: {
         onAnswer(num) {
-            if (num == this.good) {
-                this.$store.dispatch('setAnswer', 'success')
-                this.$store.dispatch('setMessage', 'Good Job!')
-                this.$store.dispatch('setStatsSuccess')
-                this.changeState('message')
-            } else {
-                this.$store.dispatch('setAnswer', 'error')
-                this.$store.dispatch('setMessage', `${this.x} + ${this.y} = ${this.good}!`)
-                this.$store.dispatch('setStatsError')
-                this.changeState('message')
-            }
+            num == this.good
+                ? this.answer('success', 'Good Job!', 'setStatsSuccess')
+                : this.answer('error', `${this.x} + ${this.y} = ${this.good}!`, 'setStatsError')
+        },
+        answer(answer, message, changeStats) {
+            this.$store.dispatch('setAnswer', answer)
+            this.$store.dispatch('setMessage', message)
+            this.$store.dispatch(changeStats)
+            this.changeState('message')
         },
     },
     computed: {
@@ -36,9 +34,7 @@ export default {
             let res = [this.good]
             while (res.length < this.levels.variants) {
                 let num = mtRand(this.good - this.levels.range, this.good + this.levels.range)
-                if (!res.includes(num)) {
-                    res.push(num)
-                }
+                if (!res.includes(num)) res.push(num)
             }
             return res.sort(() => Math.random() > 0.5)
         },
@@ -62,5 +58,3 @@ function mtRand(min, max) {
     return Math.floor(Math.random() * (diff + 1)) + min
 }
 </script>
-
-<style scoped></style>
